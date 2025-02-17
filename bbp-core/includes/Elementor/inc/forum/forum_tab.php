@@ -42,17 +42,19 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
             wp_reset_postdata();
             ?>
         </div>
-        <div class="text-center bbpc-show-more-btn-wrapper">
-            <a href="<?php echo esc_url( $settings['more_url']['url'] ); ?>" class="dbl-arrow-upper show-more-btn show-more-round mt-70">
-                <div class="arrow-cont">
-                    <!-- <i class="arrow_carrot-down first"></i> -->
-                    <svg width="13px" height="13px" class="first" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/> <g id="Shopicon"> <g> <polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"/> </g> </g></svg>
-                    <!-- <i class="arrow_carrot-down second"></i> -->
-                    <svg width="13px" height="13px" class="second" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h48v48H0z" fill="none"/> <g id="Shopicon"> <g>  <polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"/> </g> </g> </svg>
-                </div>
-                <?php echo esc_html( $settings['more_txt'] ?? '' ); ?>
-            </a>
-        </div>
+
+        <?php if ( $settings['is_forum_tab_btn'] == 'yes' ) : ?>
+            <div class="text-center bbpc-show-more-btn-wrapper">
+                <a href="<?php echo esc_url( $settings['more_url']['url'] ); ?>" class="dbl-arrow-upper show-more-btn show-more-round mt-70">
+                    <div class="arrow-cont">
+                        <svg width="13px" height="13px" class="first" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"></path><polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"></polygon> </g> </g></svg>
+                        <svg width="13px" height="13px" class="second" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"></path><polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"></polygon> </g> </g></svg>
+                    </div>
+                    <?php echo esc_html( $settings['more_txt'] ?? '' ); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+
     </div>
 
     <div id="topics-<?php echo esc_attr( $this->get_id() ); ?>" class="tab-content ">
@@ -70,7 +72,8 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
                     </div>
                     <div class="post-info">
                         <div class="author">
-                            <img src="<?php echo BBPC_IMG ?>/forum_tab/user-circle-alt.svg" alt="<?php esc_attr_e( 'User circle', 'bbp-core' ); ?>">
+                            <img src="<?php echo BBPC_IMG . '/forum_tab/user-circle-alt.svg' ?>" alt="<?php esc_attr_e( 'User circle', 'bbp-core' );
+                            ?>">
                             <?php 
                             echo bbp_get_topic_author_link( 
                                 array( 
@@ -82,8 +85,9 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
                         </div>
 
                         <div class="post-time">
-                            <img src="<?php echo BBPC_IMG ?>/forum_tab/time-outline.svg" alt="<?php esc_attr_e( 'Time outline', 'bbp-core' ); ?>">
-                            <?php echo bbp_forum_last_active_time( get_the_ID() ); ?>
+                            <img src="<?php echo BBPC_IMG . '/forum_tab/time-outline.svg'?>" alt="<?php esc_attr_e( 'Time outline', 'bbp-core' );
+                            ?>">
+                            <?php bbp_forum_last_active_time( get_the_ID() ); ?>
                         </div>
 
                         <div class="post-category">
@@ -105,12 +109,12 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
                 </div>
                 <div class="post-reach">
                     <div class="post-view">
-                        <img src="<?php echo BBPC_IMG ?>/forum_tab/eye-outline.svg" alt="<?php esc_attr_e( 'View icon', 'bbp-core' ); ?>">
+                        <img src="<?php echo BBPC_IMG . '/forum_tab/eye-outline.svg' ?>" alt="<?php esc_attr_e( 'View icon', 'bbp-core' ); ?>">
                         <?php bbp_topic_view_count( $topic_id );
                         _e( ' Views', 'bbp-core' ); ?>
                     </div>
                     <div class="post-like">
-                        <img src="<?php echo BBPC_IMG ?>/forum_tab/thumbs-up-outline.svg" alt="<?php esc_attr_e( 'Like icon', 'bbp-core' ); ?>">
+                        <img src="<?php echo BBPC_IMG . '/forum_tab/thumbs-up-outline.svg' ?>" alt="<?php esc_attr_e( 'Like icon', 'bbp-core' ); ?>">
                         <?php
                         if ( $vote_count ) {
                             echo $vote_count;
@@ -120,10 +124,11 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
                         _e( ' Likes', 'bbp-core' ); ?>
                     </div>
                     <div class="post-comment">
-                        <img src="<?php echo BBPC_IMG ?>/forum_tab/chatbubbles-outline.svg" alt="<?php esc_attr_e( 'Comment icon', 'bbp-core' ); ?>">
+                        <img src="<?php echo BBPC_IMG . '/forum_tab/chatbubbles-outline.svg' ?>" alt="<?php esc_attr_e( 'Comment icon', 'bbp-core' ); ?>">
                         <?php
-                        echo bbp_topic_reply_count( $topic_id );
-                        _e( ' Replies', 'bbp-core' ) ?>
+                        bbp_topic_reply_count( $topic_id );
+                        esc_html_e( ' Replies', 'bbp-core' )
+                        ?>
                     </div>
                 </div>
             </div>
@@ -134,19 +139,19 @@ $topics_tab_title = ! empty ( $settings['topics_tab_title'] ) ? $settings['topic
         wp_reset_postdata();
         ?>
 
-        <div class="row">
-            <div class="text-center bbpc-show-more-btn-wrapper">
-                <a href="<?php echo esc_url( $settings['more_url2']['url'] ); ?>" class="dbl-arrow-upper show-more-btn show-more-round mt-70">
-                    <div class="arrow-cont">
-                        <!-- <i class="arrow_carrot-down first"></i> -->
-                        <svg width="13px" height="13px" class="" first viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h48v48H0z" fill="none"/> <g id="Shopicon"> <g> <polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"/> </g> </g> </svg>
-                        <!-- <i class="arrow_carrot-down second"></i> -->
-                        <svg width="13px" height="13px" class="second" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h48v48H0z" fill="none"/> <g id="Shopicon"> <g> <polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"/> </g> </g> </svg>
-                    </div>
-                    <?php echo esc_html( $settings['more_txt2'] ?? '' ); ?>
-                </a>
+        <?php if ( $settings['is_topic_tab_btn'] == 'yes' ) : ?>
+            <div class="row">
+                <div class="text-center bbpc-show-more-btn-wrapper">
+                    <a href="<?php echo esc_url( $settings['more_url2']['url'] ); ?>" class="dbl-arrow-upper show-more-btn show-more-round mt-70">
+                        <div class="arrow-cont">
+                            <svg width="13px" height="13px" class="first" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"></path><polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"></polygon> </g> </g></svg>
+                            <svg width="13px" height="13px" class="second" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"> <path d="M0 0h48v48H0z" fill="none"></path><polygon points="24,29.171 9.414,14.585 6.586,17.413 24,34.827 41.414,17.413 38.586,14.585"></polygon> </g> </g> </svg>
+                        </div>
+                        <?php echo esc_html( $settings['more_txt2'] ?? '' ); ?>
+                    </a>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
 
     </div>
 </section>
