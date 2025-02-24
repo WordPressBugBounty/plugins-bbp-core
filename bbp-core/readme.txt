@@ -4,7 +4,7 @@ Tags: bbPress, Community, Forum, Private Replies, Attachments
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,12 @@ You can install the BBP Core from your WordPress Dashboard or manually upload it
 2. BBP Core Settings
 
 == Changelog ==
+
+= v1.2.9 (25 February 2025) =
+New: Offer notice added for our valuable customers (not for fresher)
+New: Loco.xml configuration file added for multiple text domains mapping in Loco translate plugin
+Fixed:  Deprecated issue: Increment on non-alphanumeric string is deprecated in /bbp-core/includes/admin/menu/admin_ui/forums.php on line 8
+Tweaked: Freemius SDK moved to the vendor folder
 
 = v1.2.8 (17 February 2025) =
 Fixed: Resolved some issue of the "BBPC single forum & Forum Tabs" Elementor widget
