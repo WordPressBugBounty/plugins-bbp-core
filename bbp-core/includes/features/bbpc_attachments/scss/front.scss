@@ -1,9 +1,46 @@
 .bbp-attachments {
     ol.with-icons {
         display: flex;
-        gap: 10px;
+        gap: 15px;
         list-style: none;
         padding: 0;
+        margin-bottom: 0;
+
+        li {
+            .wp-caption {
+                margin-bottom: 0;
+
+                .wp-caption-text {
+                    .d4p-bba-actions {
+                        color: #f90000;
+                        margin-top: 10px;
+                        display: block;
+
+                        &:hover {
+                            a {
+                                color: #f90000;
+                            }
+                        }
+                    }
+                }
+            }
+            &:hover {
+                transition: all 0.3s;
+
+                img {
+                    border-color: var(--black_100);
+                }
+            }
+        }
+
+        a {
+            text-decoration: none;
+            img {
+                border-radius: 10px;
+                border: solid 1px var(--black_50);
+                padding: 6px;
+            }
+        }
     }
 }
 
@@ -102,6 +139,12 @@
             li {
                 line-height: 20px;
                 margin: 0 0 8px !important;
+
+                span.d4p-bba-actions {
+                    color: #f90000;
+                    margin-top: 10px;
+                    display: block;
+                }
 
                 a {
                     text-decoration: none;

@@ -2,9 +2,9 @@
 Contributors: spiderdevs, mdjwel, delweratjk
 Tags: bbPress, Community, Forum, Private Replies, Attachments
 Requires at least: 5.0
-Tested up to: 6.7.1
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,8 @@ BBP Core empowers bbPress forum with useful features. For example - Unified Foru
 - **Voting On Topic & Replies:**  Allows users to vote on replies to topics, with the highest-voted reply rising to the top. The voting system is powered by AJAX for a seamless and engaging community interaction.
 
 - **Media Attachments:**  Enables users to attach files to their replies, which can be downloaded by other users. The attachments are displayed in a separate section below the Topic and Reply content. This enhances the forum's functionality, allowing for the seamless sharing of relevant files and media within discussions.
+
+- **Current Forum Info widget:** Displays the current forum's information, including the number of Topics, Replies, Last post by, and Last activity, as well as the Subscribe forum button. This widget provides users with a quick overview of the forum's activity and content, encouraging them to explore further.
 
 - **Elementor Integrated:** BBP Core comes with a set of Elementor widgets that can be used to display forums, topics, and replies on any page of your website. The widgets are highly customizable, allowing you to configure their appearance and functionality to suit your needs.
 
@@ -103,11 +105,24 @@ You can install the BBP Core from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.2.9 (25 February 2025) =
-New: Offer notice added for our valuable customers (not for fresher)
+= v1.3.0 (22 April 2025) =
+Fixed: Fixed BBP Core conflict with Dukan and Job Manager plugins
+Tweaked: The "Forums" page has been renamed to Forum Builder for better clarity and usability
+Tweaked: Refreshed the topic open icon within the Forum Builder for a more intuitive visual cue
+Tweaked: Each topic now displays a corresponding status icon, making it easier to identify topic types at a glance
+Tweaked: The first forum item now opens by default, providing a more user-friendly initial view
+Tweaked: Delay on search input keypress
+Tweaked: Current Forum Info widget (show all information by default, moved widgets folder to the plugin root folder)
+Tweaked: BBPC Forum Information widget title will show on the Forum page only.
+Tweaked: Settings page improved (reorganized the settings options, added icons to the settings tab)
+Tweaked: Topic details page improved (reply button, favorite button and attachment design improved )
+Tweaked: Forum builder UX improved
+Tweaked: Dashicons used instead of fontawesome icon to optimize performance in the dashboard
+
+= v1.2.9 (24 February 2025) =
 New: Loco.xml configuration file added for multiple text domains mapping in Loco translate plugin
-Fixed:  Deprecated issue: Increment on non-alphanumeric string is deprecated in /bbp-core/includes/admin/menu/admin_ui/forums.php on line 8
-Tweaked: Freemius SDK moved to the vendor folder
+New: Offer notice added for our valuable customers (not for fresher)
+Fixed: Deprecated issue, Increment on non-alphanumeric string is deprecated in /bbp-core/includes/admin/menu/admin_ui/forums.php on line 8
 
 = v1.2.8 (17 February 2025) =
 Fixed: Resolved some issue of the "BBPC single forum & Forum Tabs" Elementor widget
@@ -131,88 +146,4 @@ Tweaked: Anonymous profile picture gap with title (in the sidebar widget)
 Tweaked: Attachment thumbnail design improved
 Updated: Freemius SDK updated to 2.9.0
 
-= v1.2.4 (23 August 2024) =
-Fixed: Brand color change issue
-Updated: Freemius SDK updated to 2.7.4
-
-= v1.2.3 (25 March 2024) =
-Fixed: Resolved elementor free & pro widgets conflict. Free and pro widgets appearing at the same time on the editor.
-Fixed: Fixed fatal error while bbpress is not activated
-Fixed: Admin script loading issue (attached the scripts with the correct hook)
-New: Customizer option added for the brand color
-Tweaked: Forum Builder UI improved in the Admin Dashboard
-Tweaked: Voting settings option improved in the settings page
-Tweaked: Compatibility with the latest BBP Core Pro plugin
-Tweaked: Redirection stop after activating the plugin
-Tweaked: Plugin's Documentation link added in plugins page (beside the plugin name)
-
-= v1.2.2 (01 January 2024) =
-Fixed: Code validation issues fixed in the asking-for-review.php file
-Fixed: Create Topic as anonymous issue solved
-Fixed: Resolved elementor free & pro widgets conflict
-Tweaked: 'BBPC Forum Tabs' and ''BBPC Search' Elementor widgets design improved
-Updated: Freemius SDK updated to v2.6.2
-
-= v1.2.1 (28 October 2023) =
-New: Brand Color change option added in the Settings page
-Fixed: If solved topic exists, some php warning shows in the Forum Builder UI
-Fixed: Search Elementor widget's overlay color on focus issue
-Tweaked: Ajax Search Results improved for the Search Elementor widget
-Tweaked: Search form design improved (made consistent and adjusted with the background) in the Forum Builder UI in the Admin Dashboard
-Tweaked: Trashed topics excluded from the Forum Topics count in the Forum Builder UI
-Tweaked: Dashicons used instead of some svg icons (solved, unsolved filters) in the Forum Builder UI
-Tweaked: Space adjusted if all the filter tabs shown in the Forum Builder UI
-Tweaked: Removed some unnecessary files to make the plugin lightweight
-Updated: Freemius SDK to v2.6.0
-
-= v1.2.0 (27 October 2023) =
-Fixed: BBP Core Search Form widget's overlay color on focus issue fixed
-Fixed: PHP Namespace issue
-Updated: Freemius SDK to v2.5.12
-Tweaked: Re-structured and optimized the codebase
-Tweaked: Removed some unnecessary files
-Tweaked: Made compatible with the Latest BBP Core Pro plugin
-Tweaked: Regenerated the POT file more accurately with the latest strings
-Tweaked: Forum Builder UI improved in the Admin Dashboard
-
-= v1.1.0 (13 July 2023) =
-New: BBPC Forums Elementor widgets added
-New: BBPC Ajax Forums Elementor widgets added (Unlocked in Ama theme and Ama Pro plugin)
-New: BBPC Forum Topics Elementor widgets added (Unlocked in Ama theme and Ama Pro plugin)
-New: BBPC Forum Tabs Elementor widgets added (Unlocked in Ama theme and Ama Pro plugin)
-New: BBPC Forum Search Elementor widgets added (Unlocked in Ama theme and Ama Pro plugin)
-New: BBPC Forum Single Forum Elementor widgets added (Unlocked in Ama theme and Ama Pro plugin)
-Tweaked: Removed some unnecessary files (Unlocked in Ama theme and Ama Pro plugin)
-Tweaked: Improved/redesigned the Unified Forums Builder UI (Admin UI)
-Updated: Freemius SDK to v2.5.9
-
-= v1.0.7 (September 26, 2022) =
- * Fix: Filters visibility issues fixed
-
-= v1.0.6 (September 24, 2022) =
- * Fix: Create Forum class warning
- * Fix: Add Forum issues
- * Improved: Forum filter selection persistence, using cookies
-
-= v1.0.5 (September 17, 2022) =
- * Improved: Admin UI filter navigation.
- * New: Adding forum and topics from Admin UI Page
-
-= v1.0.4 (September 10, 2022) =
- * Fix: Add new button disappeared on plugin and theme page solved
-
-= v1.0.3 (September 9, 2022) =
- * Fix: Admin UI forum thumbnail
- * Added support for docly theme
-
-= v1.0.2 (August 21, 2022) =
- * Fix: Admin UI settings
- * Fix: Admin UI CSS
-
-= v1.0.1 (August 21, 2022) =
- * Custom Forum dashboard UI
- * BBPress voting
- * Highly customizable settings options
-
-= v1.0.0 (July 25, 2022) =
- * Initial release
+[See changelog for all versions](https://spider-themes.net/bbp-core/changelog).
