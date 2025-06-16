@@ -4,7 +4,7 @@ Tags: bbPress, Community, Forum, Private Replies, Attachments
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,14 @@ You can install the BBP Core from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.3.1 (16 June 2025) =
+Fixed: Deprecation warning by wrapping attachment files in hook
+Fixed: Tab CSS was conflicting with other plugins and themes
+Tweaked: Improved compatibility with Docy Dark mode
+Tweaked: Updated sidebar to flexible width
+Tweaked: Featured image size adjusted in the Forum builder
+Updated: Freemius SDK updated to 2.12.0
+
 = v1.3.0 (22 April 2025) =
 Fixed: Fixed BBP Core conflict with Dukan and Job Manager plugins
 Tweaked: The "Forums" page has been renamed to Forum Builder for better clarity and usability
@@ -113,7 +121,7 @@ Tweaked: Each topic now displays a corresponding status icon, making it easier t
 Tweaked: The first forum item now opens by default, providing a more user-friendly initial view
 Tweaked: Delay on search input keypress
 Tweaked: Current Forum Info widget (show all information by default, moved widgets folder to the plugin root folder)
-Tweaked: BBPC Forum Information widget title will show on the Forum page only.
+Tweaked: BBPC Forum Information widget title will show on the Forum page only
 Tweaked: Settings page improved (reorganized the settings options, added icons to the settings tab)
 Tweaked: Topic details page improved (reply button, favorite button and attachment design improved )
 Tweaked: Forum builder UX improved
@@ -136,14 +144,5 @@ Fixed: Resolved the issue with inserting forums and topics on the Nginx server
 Fixed: Theme name check to resolve translation loading error
 Tweaked: Improved 'Add Forum' button design
 Updated: Freemius SDK updated to 2.10.1
-
-= v1.2.6 (31 October 2024) =
-Fixed: Security issues resolved
-
-= v1.2.5 (30 October 2024) =
-New: Added a hook to insert option in Settings
-Tweaked: Anonymous profile picture gap with title (in the sidebar widget)
-Tweaked: Attachment thumbnail design improved
-Updated: Freemius SDK updated to 2.9.0
 
 [See changelog for all versions](https://spider-themes.net/bbp-core/changelog).

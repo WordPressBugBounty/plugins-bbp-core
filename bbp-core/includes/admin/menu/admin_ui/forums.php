@@ -21,12 +21,16 @@
 			?>
             <li class="easydocs-navitem <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
                 <div class="title">
-					<?php
-					if ( get_the_post_thumbnail( $current_post ) ) :
-						echo get_the_post_thumbnail( $current_post, 'bbpc_32x32' );
-					else : ?>
-                        <span class="dashicons dashicons-buddicons-forums"></span>
-					<?php endif; ?>
+                    <div class="featured-image">
+	                    <?php
+	                    if ( get_the_post_thumbnail( $current_post ) ) :
+		                    echo get_the_post_thumbnail( $current_post, 'bbpc_32x32' );
+	                    else :
+		                    ?>
+                            <span class="dashicons dashicons-buddicons-forums"></span>
+	                    <?php endif; ?>
+                    </div>
+
                     <span class="easydocs-forums-title"><?php the_title(); ?></span>
                 </div>
                 <div class="total-page">
@@ -34,7 +38,7 @@
 						<?php echo count( $count_children ) > 0 ? count( $count_children ) : ''; ?>
 					</span>
                 </div>
-                <div class="link">
+                <div class="link-wrapper link">
 					<?php if ( current_user_can( 'editor' ) || current_user_can( 'administrator' ) ) : ?>
                         <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank"
                            title="<?php esc_attr_e( 'Edit this forum.', 'bbp-core' ); ?>">
