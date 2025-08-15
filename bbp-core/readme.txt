@@ -4,11 +4,11 @@ Tags: bbPress, Community, Forum, Private Replies, Attachments
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-BBP Core expands many useful features for the bbPress forums.
+BBP Core enhances bbPress forums with unified builder, private replies, voting, solved topics, attachments, and comprehensive Elementor integration.
 
 == Description ==
 
@@ -105,7 +105,18 @@ You can install the BBP Core from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.3.1 (16 June 2025) =
+= 1.3.2 (15 August 2025) =
+Fixed: Resolved attachment field visibility issue
+Tweaked: Forum Tabs widget design improved
+Tweaked: Added the function "bbpc_get_opt()" for CSF settings where it was missing
+Tweaked: Assets folder re-structured (admin CSS and JS files kept in a separate folder "admin")
+Tweaked: Removed some unnecessary assets (normalize.js, fontawesome.css etc)
+Tweaked: Made the non translatable strings to translatable
+Tweaked: Function prefix added which functions don't have prefix to avoid conflict with other plugins and themes
+Enhanced: Compatibility improved with the Docy theme dark mode
+Updated: Freemius SDK updated to 2.12.1
+
+= 1.3.1 (16 June 2025) =
 Fixed: Deprecation warning by wrapping attachment files in hook
 Fixed: Tab CSS was conflicting with other plugins and themes
 Tweaked: Improved compatibility with Docy Dark mode
@@ -113,7 +124,7 @@ Tweaked: Updated sidebar to flexible width
 Tweaked: Featured image size adjusted in the Forum builder
 Updated: Freemius SDK updated to 2.12.0
 
-= v1.3.0 (22 April 2025) =
+= 1.3.0 (22 April 2025) =
 Fixed: Fixed BBP Core conflict with Dukan and Job Manager plugins
 Tweaked: The "Forums" page has been renamed to Forum Builder for better clarity and usability
 Tweaked: Refreshed the topic open icon within the Forum Builder for a more intuitive visual cue
@@ -127,22 +138,15 @@ Tweaked: Topic details page improved (reply button, favorite button and attachme
 Tweaked: Forum builder UX improved
 Tweaked: Dashicons used instead of fontawesome icon to optimize performance in the dashboard
 
-= v1.2.9 (24 February 2025) =
+= 1.2.9 (24 February 2025) =
 New: Loco.xml configuration file added for multiple text domains mapping in Loco translate plugin
 New: Offer notice added for our valuable customers (not for fresher)
 Fixed: Deprecated issue, Increment on non-alphanumeric string is deprecated in /bbp-core/includes/admin/menu/admin_ui/forums.php on line 8
 
-= v1.2.8 (17 February 2025) =
+= 1.2.8 (17 February 2025) =
 Fixed: Resolved some issue of the "BBPC single forum & Forum Tabs" Elementor widget
 Fixed: Image size of forum tab widget
 Tweaked: Improved "View More Button" of the "Forum Tabs" widget
 Updated: Freemius SDK updated to 2.11.0
-
-= v1.2.7 (24 December 2024) =
-Fixed: sprintf php error
-Fixed: Resolved the issue with inserting forums and topics on the Nginx server
-Fixed: Theme name check to resolve translation loading error
-Tweaked: Improved 'Add Forum' button design
-Updated: Freemius SDK updated to 2.10.1
 
 [See changelog for all versions](https://spider-themes.net/bbp-core/changelog).

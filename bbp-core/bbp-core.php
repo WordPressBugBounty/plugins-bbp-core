@@ -6,7 +6,7 @@ Description:       Expand bbPress powered forums with useful features like - pri
 Author:            spider-themes
 Author URI:        https://spider-themes.net/bbp-core
 Text Domain:       bbp-core
-Version:           1.3.1
+Version:           1.3.2
 Requires at least: 5.0
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -64,7 +64,7 @@ require_once __DIR__ . '/autoloader.php';
  * Plugin's heart
  */
 final class BBP_Core {
-	const VERSION = '1.3.1';
+	const VERSION = '1.3.2';
 
 	/**
 	 * Class constructor.
@@ -115,7 +115,10 @@ final class BBP_Core {
 		define( 'BBPC_DIR', __DIR__ . '/' );
 		define( 'BBPC_URL', plugins_url( '/', __FILE__ ) );
 		define( 'BBPC_ASSETS', BBPC_URL . 'assets/' );
+		define( 'BBPC_FRONT_ASS', BBPC_URL . 'assets/frontend/' );
+		define( 'BBPC_ADMIN_ASS', BBPC_ASSETS . 'admin/' );
 		define( 'BBPC_IMG', BBPC_ASSETS . 'img/' );
+		define( 'BBPC_VEND', BBPC_ASSETS . 'vendors/' );
 	}
 
 	/**
@@ -202,7 +205,7 @@ final class BBP_Core {
 
 		new admin\Elementor\BBP_Widgets();
 	}
-	
+
 	/**
 	 * Include CSF files include
 	 */
@@ -217,30 +220,28 @@ final class BBP_Core {
 	 * @return void
 	 */
 	public function load_features() {
-		$opt = get_option( 'bbp_core_settings' );
 		define( 'BBPC_FEAT_PATH', plugin_dir_path( __FILE__ ) . 'includes/features/' );
 
-		if ( $opt['is_solved_topics'] ?? true ) {
+		if ( bbpc_get_opt( 'is_solved_topics', true ) ) {
 			require BBPC_FEAT_PATH . 'bbp_solved_topic.php';
 		}
 
-		if ( $opt['is_private_replies'] ?? true ) {
+		if ( bbpc_get_opt( 'is_private_replies', true ) ) {
 			require BBPC_FEAT_PATH . 'bbp-private-replies.php';
 		}
 
 		if ( bbpc_is_premium() || class_exists( 'BBPC_GEO_ROLES' ) ) {
-			$reactions = $opt['agree_disagree_voting'] ?? '';
-			if ( ! empty ( $reactions ) ) {
+			if ( bbpc_get_opt( 'agree_disagree_voting' ) ) {
 				require BBPC_FEAT_PATH . 'bbp_voting/agree-disagree/init.php';
 				require BBPC_FEAT_PATH . 'bbp_voting/agree-disagree/actions.php';
 			}
 		}
 
-		if ( $opt['is_votes'] ?? true ) {
+		if ( bbpc_get_opt( 'is_votes', true ) ) {
 			new features\bbp_voting();
 		}
 
-		if ( $opt['is_attachment'] ?? true ) {
+		if ( bbpc_get_opt( 'is_attachment', true ) ) {
 			new features\bbp_attachments();
 		}
 	}
@@ -253,7 +254,7 @@ final class BBP_Core {
 		if ( plugin_basename( __FILE__ ) === $file ) {
 			// Add your custom links
 			$plugin_links = array(
-				'<a href="https://helpdesk.spider-themes.net/docs/bbp-core-wordpress-plugin/" target="_blank">Documentation</a>'
+				'<a href="https://helpdesk.spider-themes.net/docs/bbp-core-wordpress-plugin/" target="_blank">' . esc_html__('Documentation', 'bbp-core') . '</a>'
 			);
 			// Merge the custom links with the existing links
 			$links = array_merge( $links, $plugin_links );

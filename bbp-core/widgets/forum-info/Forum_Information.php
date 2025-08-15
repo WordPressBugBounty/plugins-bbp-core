@@ -6,7 +6,7 @@ use WP_Widget;
 // Newsletter
 class Forum_Information extends WP_Widget {
 	public function __construct() {
-		parent::__construct( 'bbpc_forum_info', esc_html__( 'BBPC Current Forum Info', 'bbp-core' ), array(
+		parent::__construct( 'bbpc_forum_info', esc_html__( '(BBPC) Current Forum Info', 'bbp-core' ), array(
 			'description' => esc_html__( "Displays the current forum's information, including the number of topics, replies, Last post by, and Last activity, as well as the Subscribe button", 'bbp-core' ),
 			'classname'   => 'bbpc_forum_information'
 		) );
@@ -18,7 +18,7 @@ class Forum_Information extends WP_Widget {
         if ( ! isset( $args['widget_id'] ) ) {
             $args['widget_id'] = $this->id;
         }
- 
+
         $title                  = ( ! empty( $instance['title'] ) ) ? $instance['title'] : esc_html__( 'Forum Informations', 'bbp-core' );
         $title                  = apply_filters( 'widget_title', $title, $instance, $this->id_base );
         $show_icons             = $instance['show_icons'] ?? false;
@@ -27,9 +27,9 @@ class Forum_Information extends WP_Widget {
         $show_last_post_user    = $instance['show_last_post_user'] ?? false;
         $show_last_activity     = $instance['show_last_activity'] ?? false;
         $show_subscribe         = $instance['show_subscribe'] ?? false;
- 
+
         echo $args['before_widget'];
-        
+
         if(  is_bbpress() && is_singular( 'forum' ) ) :
             $forum_id               = bbp_get_forum_id();
             $topic_count            = bbp_get_forum_topic_count( $forum_id );
@@ -66,11 +66,11 @@ class Forum_Information extends WP_Widget {
                                         esc_html_e( 'Topics', 'bbp-core' );
                                         ?>
                                     </th>
-                                    <td><?php echo $topic_count; ?></td>
+                                    <td><?php echo esc_html($topic_count); ?></td>
                                 </tr>
                                 <?php 
                             endif;
-                            
+
                             if ( $show_replies_count == 'on' ) :
                                 ?>
                                 <tr class="show_count_replies">
@@ -84,7 +84,7 @@ class Forum_Information extends WP_Widget {
                                         esc_html_e( 'Replies', 'bbp-core' );
                                         ?>    
                                     </th>
-                                    <td><?php echo $reply_count; ?></td>
+                                    <td><?php echo esc_html($reply_count); ?></td>
                                 </tr>
                                 <?php 
                             endif;
@@ -104,7 +104,7 @@ class Forum_Information extends WP_Widget {
                                 </th>
                                     <td>
                                         <a href="<?php echo get_author_posts_url( $last_active_user ); ?>">
-                                            <?php echo $last_active_user = get_the_author_meta( 'user_nicename', $last_active_user ); ?>
+                                            <?php echo esc_html($last_active_user = get_the_author_meta( 'user_nicename', $last_active_user )); ?>
                                         </a>
                                     </td>
                                 </tr>
@@ -124,13 +124,12 @@ class Forum_Information extends WP_Widget {
                                         esc_html_e( 'Last activity', 'bbp-core' );
                                         ?>
                                     </th>
-                                    <td> <?php echo $last_active; ?> </td>
+                                    <td> <?php echo esc_html($last_active); ?> </td>
                                 </tr>
                                 <?php 
                             endif;
-                            
+
                             if ( $show_subscribe == 'on' ) :
-                                wp_enqueue_style( 'bbpc-frontend-global' );
                                 wp_enqueue_script( 'bbpc-wp-widget' );
                                 ?>
                                 <tr class="show_subscribe">
@@ -149,7 +148,7 @@ class Forum_Information extends WP_Widget {
                                         if( is_user_logged_in() ){
                                             echo bbp_get_forum_subscription_link();
                                         } else {
-                                            echo $subscribe_link = '<a href="'. wp_login_url(get_permalink()) .'">Login to subscribe</a>';
+                                            echo $subscribe_link = '<a href="'. wp_login_url(get_permalink()) .'">'. esc_html__('Login to subscribe', 'bbp-core') .'</a>';
                                         }
                                         ?>
                                     </td>
@@ -163,7 +162,7 @@ class Forum_Information extends WP_Widget {
                 <?php
             endif;
         endif;
-        
+
 		echo $args['after_widget'];
 	}
 
