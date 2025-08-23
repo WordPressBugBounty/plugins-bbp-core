@@ -6,7 +6,7 @@ Description:       Expand bbPress powered forums with useful features like - pri
 Author:            spider-themes
 Author URI:        https://spider-themes.net/bbp-core
 Text Domain:       bbp-core
-Version:           1.3.2
+Version:           1.3.3
 Requires at least: 5.0
 Tested up to:      6.8
 Requires PHP:      7.4
@@ -64,7 +64,7 @@ require_once __DIR__ . '/autoloader.php';
  * Plugin's heart
  */
 final class BBP_Core {
-	const VERSION = '1.3.2';
+	const VERSION = '1.3.3';
 
 	/**
 	 * Class constructor.
@@ -180,6 +180,15 @@ final class BBP_Core {
 		}
 
 		update_option( 'bbpc_version', BBPC_VERSION );
+		// Ensure default option for bbp_core_settings
+		$defaults = array(
+			'is_bbpc_insert_media' => true,
+		);
+
+		$current = get_option( 'bbp_core_settings', array() );
+		$updated = wp_parse_args( $current, $defaults );
+
+		update_option( 'bbp_core_settings', $updated );
 	}
 
 	/**
