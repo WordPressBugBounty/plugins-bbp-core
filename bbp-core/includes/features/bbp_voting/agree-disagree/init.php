@@ -12,8 +12,17 @@ add_action('bbp_template_after_user_details_menu_items', function() {
     <ul>
         <li class="bbp-user-votings-wrap">
             <span>
-                <a href="<?php bbp_user_profile_url(); ?>?bbpc-voting=true" title="<?php printf( esc_attr__( "%s's Votings", 'bbp-core-pro' ), bbp_get_displayed_user_field( 'display_name' ) ); ?>">
-                    <?php esc_html_e( 'Reactions', 'bbp-core-pro' ); ?>
+                <a href="<?php echo esc_url( bbp_user_profile_url() . '?bbpc-voting=true' ); ?>"
+                title="<?php
+                   
+                    echo esc_attr(
+                        sprintf(  /* translators: %s: Display name of the user */
+                            __( "%s's Votings", 'bbp-core' ),
+                            bbp_get_displayed_user_field( 'display_name' )
+                        )
+                    );
+                ?>">
+                    <?php esc_html_e( 'Reactions', 'bbp-core' ); ?>
                 </a>
             </span>
         </li>
@@ -56,7 +65,9 @@ add_action( 'bbp_template_before_user_wrapper', function(){
                     $(document).ready(function(){
                         $('#bbp-user-navigation ul li').removeClass('current');
                         $('.bbp-user-votings-wrap').addClass('current');
-                        $('#bbp-user-body').html(<?php echo $voting_content; ?>);
+                        $('#bbp-user-body').html(
+                            <?php echo wp_json_encode( $voting_content ); ?>
+                        );
                         $('.bbpc-no-voting-wrap:not(:last-child)').remove();
                     });
                 })(jQuery);

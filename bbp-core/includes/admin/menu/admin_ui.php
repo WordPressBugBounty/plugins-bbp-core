@@ -118,6 +118,16 @@ $forum_count   = (int) ( $fcount->publish + $fcount->hidden + $fcount->spam );
 									<!-- Children topics. -->
 									<?php include __DIR__ . '/admin_ui/topics.php'; ?>
 
+									<?php
+									if ( $children->post_count > 10 ) :
+										?>
+										<div class="controls bbpc-admin-pagination">
+											<div class="mixitup-control mixitup-page-list"></div>
+										</div>
+										<?php
+									endif;
+									?>
+
 									<a class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round button button-info section-doc" id="bbpc-topic" target="_blank" name="submit" href="javascript:void(0)" bbp_forum_id="<?php echo esc_attr( $item ); ?>">
 										<?php esc_html_e( 'Add Topic', 'bbp-core' ); ?>
 									</a>
@@ -134,7 +144,7 @@ $forum_count   = (int) ( $fcount->publish + $fcount->hidden + $fcount->spam );
 		else :
 			?>
 			<div class="eazydocs-no-content">
-				<img src="<?php echo BBPC_IMG; ?>/icon/folder-open.png" alt="<?php esc_attr_e( 'Folder Open', 'bbp-core' ); ?>">
+				<img src="<?php echo esc_url( BBPC_IMG . 'icon/folder-open.png' ); ?>" alt="<?php esc_attr_e( 'Folder Open', 'bbp-core' ); ?>">
 				<p class="big-p"> <?php esc_html_e( 'No forum has been found . Perhaps', 'bbp-core' ); ?> </p>
 				<p> <br>
 					<a href="javascript:void(0)" type="button" id="bbpc-forum" class="button button-primary ezd-btn btn-lg">
@@ -161,6 +171,9 @@ $forum_count   = (int) ( $fcount->publish + $fcount->hidden + $fcount->spam );
 				},
 				load: {
 					filter: '<?php echo esc_js( bbpc_get_opt( 'default_filter', '.open-topics' ) ); ?>'
+				},
+				pagination: {
+					limit: 10,
 				}
 			};
 			for (let i = 0; i < docContainer.length; i++) {

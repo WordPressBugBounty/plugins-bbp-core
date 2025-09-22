@@ -1,16 +1,14 @@
 <?php
-
 // Define the expected items
-$expected_items = [ 'open', 'closed', 'hidden', 'no_reply', 'all', 'trash' ];
+$expected_items = [ 'open', 'closed', 'hidden', 'no_reply', 'all', 'trash', 'solved', 'unsolved' ];
 
-// Get the $filter_set, with a default value if it's not set
-$filter_set = bbpc_get_opt('filter_buttons') ?? [];
+// Get the $filter_set, ensure it's always an array
+$filter_set = bbpc_get_opt( 'filter_buttons' );
+$filter_set = is_array( $filter_set ) ? $filter_set : $expected_items;
 
-// Check if all expected items are in the $filter_set
-$are_all_available = empty(array_diff($expected_items, $filter_set)) ? 'all-available' : '';
-
+// Check if all expected items are available
+$are_all_available = empty( array_diff( $expected_items, $filter_set ) ) ? 'all-available' : '';
 ?>
-
 <div class="easydocs-filter-container">
 	<ul class="single-item-filter <?php echo esc_attr($are_all_available) ?>">
 		<?php if ( in_array( 'all', $filter_set, true ) ) : ?>
@@ -23,7 +21,7 @@ $are_all_available = empty(array_diff($expected_items, $filter_set)) ? 'all-avai
 
 		<?php if ( in_array( 'open', $filter_set, true ) ) : ?>
             <li class="easydocs-btn" cookie-id="open-<?php echo esc_attr( $item ); ?>" data-filter=".open-topics">
-                <img src="<?php echo BBPC_IMG ?>icon/open.svg" alt="<?php esc_attr_e( 'Open icon', 'bbp-core' ) ?>">
+                <img src="<?php echo esc_url( BBPC_IMG . 'icon/open.svg' ); ?>" alt="<?php esc_attr_e( 'Open icon', 'bbp-core' ) ?>">
 				<?php esc_html_e( 'Open', 'bbp-core' ); ?>
                 <span class="filter-count-badge"> (<?php echo esc_html( $count_open ); ?>) </span>
             </li>
@@ -73,8 +71,8 @@ $are_all_available = empty(array_diff($expected_items, $filter_set)) ? 'all-avai
 
     <?php if ( in_array( 'trash', $filter_set, true ) ) : ?>
 		<div class="easydocs-btn-sm bbpc-trash-filter">
-			<a href="<?php echo admin_url( 'edit.php?post_status=trash&post_type=topic' ); ?>">
-                <img src="<?php echo BBPC_IMG ?>/icon/trash.svg" alt="<?php esc_attr_e( 'Trash icons', 'bbp-core') ?>">
+			<a href="<?php echo esc_url( admin_url( 'edit.php?post_status=trash&post_type=topic' ) ); ?>">
+                <img src="<?php echo esc_url( BBPC_IMG . 'icon/trash.svg' ); ?>" alt="<?php esc_attr_e( 'Trash icons', 'bbp-core') ?>">
 				<?php esc_html_e( 'Trashed', 'bbp-core' ); ?>
 				<span class="filter-count-badge"> (<?php echo esc_html( $count_trash ); ?>) </span>
 			</a>
